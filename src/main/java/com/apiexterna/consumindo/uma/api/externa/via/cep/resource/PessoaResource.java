@@ -21,10 +21,10 @@ public class PessoaResource {
     private PessoaService pessoaService;
 
     @ResponseBody
-    @GetMapping(value = "/consultaCep/cep")
-    public ResponseEntity<CepDto> consultaCep(@PathVariable("cep") String cep){
+    @GetMapping(value = "/consulta_Cep/{cep}")
+    public ResponseEntity<CepDto> consulta_Cep(@PathVariable("cep") String cep){
        CepDto cepDto = pessoaService.consultaCep(cep);
-       return new ResponseEntity<CepDto>(cepDto, HttpStatus.FOUND);
+       return new ResponseEntity<CepDto>(cepDto, HttpStatus.OK);
     }
 
     public PessoaResource(PessoaRepository pessoaRepository, PessoaService pessoaService) {
