@@ -1,7 +1,7 @@
 package com.apiexterna.consumindo.uma.api.externa.via.cep.resource;
 
 import com.apiexterna.consumindo.uma.api.externa.via.cep.dto.CepDto;
-import com.apiexterna.consumindo.uma.api.externa.via.cep.model.Pessoa;
+import com.apiexterna.consumindo.uma.api.externa.via.cep.entity.Pessoa;
 import com.apiexterna.consumindo.uma.api.externa.via.cep.repository.PessoaRepository;
 import com.apiexterna.consumindo.uma.api.externa.via.cep.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;

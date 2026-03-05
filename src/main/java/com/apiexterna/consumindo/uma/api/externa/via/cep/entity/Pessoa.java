@@ -1,17 +1,30 @@
-package com.apiexterna.consumindo.uma.api.externa.via.cep.model;
+package com.apiexterna.consumindo.uma.api.externa.via.cep.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 @Entity
 public class Pessoa {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id ;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String cpf;
+    @NotBlank
     private String cep;
+
+    public Pessoa() {
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;
@@ -37,15 +50,10 @@ public class Pessoa {
         this.cep = cep;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Pessoa)) return false;
-        Pessoa pessoa = (Pessoa) o;
+        if (!(o instanceof Pessoa pessoa)) return false;
         return Objects.equals(getId(), pessoa.getId());
     }
 
