@@ -1,104 +1,124 @@
-📍 API de Consulta de CEP com Cadastro de Pessoa
+API REST desenvolvida em Spring Boot para cadastro de pessoas e consulta de endereços através de CEP utilizando uma API externa (ViaCEP).
+A aplicação armazena dados em MySQL e retorna informações completas de endereço a partir do CEP informado.
 
-Esta é uma API desenvolvida com Spring Boot que consome a API pública do ViaCEP para buscar informações de endereço a partir de um CEP e salvar os dados associados a uma pessoa no banco de dados.
+🚀 Tecnologias Utilizadas
 
-O projeto demonstra o consumo de API externa, integração com banco de dados usando Spring Data JPA, e criação de endpoints RESTful.
-
-🚀 Tecnologias utilizadas
-
-Java 17+
+Java
 
 Spring Boot
 
-Spring Web
-
 Spring Data JPA
 
-Banco de dados (H2 / MySQL dependendo da configuração)
-
-API externa ViaCEP
+MySQL
 
 Maven
 
-Git e GitHub
+API ViaCEP
 
-📡 API Externa utilizada
+Jackson (JSON)
 
-A aplicação consome dados da API pública:
+📂 Estrutura do Projeto
+src/main/java
+ └── com.apiexterna.consumindo.uma.api.externa.via.cep
+     ├── dto
+     │    └── CepDto
+     ├── entity
+     │    └── Pessoa
+     ├── repository
+     │    └── PessoaRepository
+     ├── service
+     │    └── PessoaService
+     └── resource
+          └── PessoaResource
+⚙️ Configuração do Banco de Dados
 
-https://viacep.com.br
+Arquivo application.properties
 
-Exemplo de requisição:
+spring.jpa.database=MYSQL
+spring.datasource.url=jdbc:mysql://localhost/testcep?createDatabaseIfNotExist=true&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD
 
-https://viacep.com.br/ws/01001000/json/
-📦 Funcionalidades
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
 
-✔ Cadastrar pessoa
-✔ Buscar endereço automaticamente pelo CEP
-✔ Buscar pessoa por ID
-✔ Listar todas as pessoas
-✔ Atualizar dados da pessoa
-✔ Deletar pessoa
-✔ Validação de CPF duplicado
-✔ Tratamento de exceções
+spring.jackson.deserialization.fail-on-unknown-properties=true
+spring.jackson.date-format=yyyy-MM-dd
+🗄 Estrutura da Tabela
+CREATE TABLE pessoa(
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+cpf VARCHAR(15) NOT NULL,
+cep VARCHAR(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-🗂 Estrutura do projeto
-src
- ├── controller
- │    └── PessoaController
- │
- ├── service
- │    └── PessoaService
- │
- ├── repository
- │    └── PessoaRepository
- │
- ├── entity
- │    └── Pessoa
- │
- ├── dto
- │
- └── exception
-🔎 Exemplo de Endpoint
-Buscar pessoa por ID
-GET /pessoas/{id}
+Exemplo de inserção:
 
-Exemplo de resposta:
+INSERT INTO pessoa(nome,cpf,cep)
+VALUES ("victor", "04996072105", "71800000");
+🔗 Endpoints da API
+Criar Pessoa
+
+POST
+
+/pessoa
+
+Exemplo de JSON:
 
 {
-  "id": 1,
-  "nome": "João Silva",
-  "cpf": "12345678900",
-  "cep": "01001000",
-  "logradouro": "Praça da Sé",
-  "cidade": "São Paulo",
-  "estado": "SP"
+ "nome": "Victor",
+ "cpf": "04996072105",
+ "cep": "71800000"
 }
-⚙️ Como rodar o projeto
-1️⃣ Clonar o repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
-2️⃣ Entrar na pasta
+Buscar Pessoa por ID
+
+GET
+
+/pessoa/{id}
+Atualizar Pessoa
+
+PUT
+
+/pessoa/{id}
+Consultar CEP
+
+GET
+
+/pessoa/cep/{cep}
+
+Exemplo:
+
+/pessoa/cep/71800000
+
+Retorna dados do endereço obtidos pela API externa.
+
+▶️ Como Executar o Projeto
+
+Clone o repositório
+
+git clone URL_DO_REPOSITORIO
+
+Acesse a pasta do projeto
+
 cd nome-do-projeto
-3️⃣ Rodar o projeto
 
-Se estiver usando Maven:
+Execute a aplicação
 
-./mvnw spring-boot:run
+mvn spring-boot:run
 
-ou rodar diretamente pela sua IDE (IntelliJ ou Eclipse).
+A API iniciará em:
 
-🧠 Conceitos aplicados
+http://localhost:8080
+📌 Funcionalidades
 
-Consumo de API externa
+Cadastro de pessoas
 
-Arquitetura em camadas
+Consulta de pessoa por ID
 
-REST API
+Atualização de dados
 
-Spring Data JPA
+Consulta de endereço por CEP
 
-Tratamento de exceções
+Integração com API externa
 
-Validação de dados
-
-Integração com banco de dados
+Persistência em banco MySQL
