@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/pessoa")
-public class PessoaResource {
+public class PessoaController {
     private final PessoaRepository pessoaRepository;
     private final PessoaService pessoaService;
 
-    public PessoaResource(PessoaRepository pessoaRepository, PessoaService pessoaService) {
+    public PessoaController(PessoaRepository pessoaRepository, PessoaService pessoaService) {
         this.pessoaRepository = pessoaRepository;
         this.pessoaService = pessoaService;
     }
@@ -30,7 +30,9 @@ public class PessoaResource {
 
     @PostMapping
     public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa){
-        Pessoa pessoaSalva = pessoaRepository.save(pessoa);
+
+        Pessoa pessoaSalva = pessoaService.salvar(pessoa);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalva);
     }
 

@@ -3,7 +3,7 @@ package com.apiexterna.consumindo.uma.api.externa.via.cep.dto;
 import java.io.Serializable;
 
 public class CepDto implements Serializable{
-    private static final long serialVersionLONG = 1l;
+    private static final long serialVersionLONG = 1L;
     private String cep;
     private String logradouro;
     private String complemento;
