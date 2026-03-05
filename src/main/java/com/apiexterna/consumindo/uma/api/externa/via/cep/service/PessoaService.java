@@ -2,6 +2,7 @@
 
     import com.apiexterna.consumindo.uma.api.externa.via.cep.dto.CepDto;
     import com.apiexterna.consumindo.uma.api.externa.via.cep.entity.Pessoa;
+    import com.apiexterna.consumindo.uma.api.externa.via.cep.exceptions.BusinessException;
     import com.apiexterna.consumindo.uma.api.externa.via.cep.repository.PessoaRepository;
     import org.springframework.beans.BeanUtils;
     import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@
         public Pessoa salvar(Pessoa pessoa){
 
             if (pessoaRepository.existsByCpf(pessoa.getCpf())) {
-                throw new RuntimeException("CPF já cadastrado");
+                throw new BusinessException("CPF já cadastrado");
             }
 
             return pessoaRepository.save(pessoa);
