@@ -1,7 +1,9 @@
 API REST desenvolvida em Spring Boot para cadastro de pessoas e consulta de endereços através de CEP utilizando uma API externa (ViaCEP).
 A aplicação armazena dados em MySQL e retorna informações completas de endereço a partir do CEP informado.
 
+
 🚀 Tecnologias Utilizadas
+
 
 Java
 
@@ -17,7 +19,10 @@ API ViaCEP
 
 Jackson (JSON)
 
+
 📂 Estrutura do Projeto
+
+
 src/main/java
  └── com.apiexterna.consumindo.uma.api.externa.via.cep
      ├── dto
@@ -30,7 +35,11 @@ src/main/java
      │    └── PessoaService
      └── resource
           └── PessoaResource
+
+          
+          
 ⚙️ Configuração do Banco de Dados
+
 
 Arquivo application.properties
 
@@ -56,6 +65,8 @@ Exemplo de inserção:
 
 INSERT INTO pessoa(nome,cpf,cep)
 VALUES ("victor", "04996072105", "71800000");
+
+
 🔗 Endpoints da API
 Criar Pessoa
 
@@ -92,6 +103,8 @@ Exemplo:
 
 Retorna dados do endereço obtidos pela API externa.
 
+
+
 ▶️ Como Executar o Projeto
 
 Clone o repositório
@@ -109,6 +122,8 @@ mvn spring-boot:run
 A API iniciará em:
 
 http://localhost:8080
+
+
 📌 Funcionalidades
 
 Cadastro de pessoas
