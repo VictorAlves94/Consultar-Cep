@@ -24,16 +24,27 @@ Jackson (JSON)
 
 
 src/main/java
+
  └── com.apiexterna.consumindo.uma.api.externa.via.cep
+ 
      ├── dto
+
      │    └── CepDto
+     
      ├── entity
+     
      │    └── Pessoa
+     
      ├── repository
+     
      │    └── PessoaRepository
+     
      ├── service
+     
      │    └── PessoaService
+     
      └── resource
+     
           └── PessoaResource
 
           
